@@ -18,7 +18,7 @@ pacman::p_load("readr","hms")
 Vamos a crear de forma preliminar las carpetas
 
 ```{r}
-#si ya están las no las crea!!
+#si ya están las carpetas no las crea!!
 if (!dir.exists("./data")){ 
   dir.create("./data")
 }
@@ -46,4 +46,9 @@ str(DFP)
 save(DFP, file = "./data/DFP1_11122015_124700.RData")
 ```
 
+## Transactions from a Bakery (Kaggle)
+
+```{r}
+Bread <- read_csv("./data/BreadBasket_DMS.csv")
+```
 

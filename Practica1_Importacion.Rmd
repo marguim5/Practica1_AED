@@ -28,6 +28,11 @@ knit_hooks$set(inline=function(x) {
 })
 ```
 
+Creamos librerías
+
+```{r}
+pacman::p_load("readr","hms")
+```
 
 # Introducción
 
@@ -84,14 +89,27 @@ Usa siempre rutas referidas a la carpeta, en la que se encuentra el fichero fuen
 
 ```{r}
 fname <- 'data/DFP1_11122015 124700.csv'
+DFP <- read.csv("./data/DFP1_11122015 124700.csv",header = T, sep="\t",stringsAsFactors = F)
+str(DFP)
 ```
+Ahora vamos a cambiar la columna HORA y FECHA en formato de fecha
 
+```{r}
+DFP$FECHA<-as.POSIXlt(DFP$FECHA,tryFormats ="%d/%m/%Y" )
+DFP$HORA<-as_hms(DFP$HORA)
+str(DFP)
+save(DFP, file = "./data/DFP1_11122015_124700.RData")
+```
 ## Inspección de los datos
 
 Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
 # str, head, tail, summary
+str(DFP)
+head(DFP)
+tail(DFP)
+summary(DFP)
 ```
 
 
@@ -110,6 +128,7 @@ Otra opción es usar la librería `readr` para especificar directamente el tipo 
 ```{r}
 library(readr)
 filename <- "data/BreadBasket_DMS.csv"
+Bread <- read.csv(filename)
 ```
 
 ## Inspección de los datos
