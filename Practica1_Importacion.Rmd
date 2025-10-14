@@ -31,7 +31,7 @@ knit_hooks$set(inline=function(x) {
 Creamos librerías
 
 ```{r}
-pacman::p_load("readr","hms")
+pacman::p_load("readr","hms","haven")
 ```
 
 # Introducción
@@ -134,6 +134,7 @@ Bread <- read.csv(filename)
 Bread$Item<-as.factor(Bread$Item)
 Bread$Date<-as.POSIXlt(Bread$Date,tryFormats ="%Y-%m-%d" )
 Bread$Time<-as_hms(Bread$Time)
+save(Bread, file = "./data/BreadBasket_DMS.RData")
 ```
 
 ## Inspección de los datos
@@ -160,8 +161,10 @@ Podemos leer ficheros de IBM SPSS mediante la librería `haven`.
   2. Guardar el data frame con `save`.
 
 ```{r}
-library(haven)
+#library(haven)
 filename <- "data/PsychBike.sav"
+Bike<-read_sav(filename)
+
 ```
 
 ## Inspección de los datos
@@ -170,6 +173,12 @@ Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
 # dim, str, etc.
+namedf<-Bike
+str(namedf)
+head(namedf)
+tail(namedf)
+summary(namedf)
+
 ```
 
 
@@ -195,8 +204,9 @@ En R podemos importar ficheros JSON con la librería `jsonlite`. Las funciones m
   4. Almacenar los resultados en `FileCodificado.RData`.
 
 ```{r}
-library(jsonlite)
+pacman::p_load(jsonlite)
 filename <- 'data/FileCodificado.json'
+
 ```
 
 ## Inspección de los datos
