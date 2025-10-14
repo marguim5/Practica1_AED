@@ -130,6 +130,11 @@ library(readr)
 filename <- "data/BreadBasket_DMS.csv"
 Bread <- read.csv(filename)
 ```
+```{r}
+Bread$Item<-as.factor(Bread$Item)
+Bread$Date<-as.POSIXlt(Bread$Date,tryFormats ="%Y-%m-%d" )
+Bread$Time<-as_hms(Bread$Time)
+```
 
 ## Inspección de los datos
 
@@ -137,6 +142,10 @@ Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
 # dim, str, ...
+str(Bread)
+head(Bread)
+tail(Bread)
+summary(Bread)
 ```
 
 
