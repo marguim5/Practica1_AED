@@ -206,15 +206,24 @@ En R podemos importar ficheros JSON con la librería `jsonlite`. Las funciones m
 ```{r}
 pacman::p_load(jsonlite)
 filename <- 'data/FileCodificado.json'
-
+JSON<- read_json(filename, simplifyVector = T)
+JSONmal<- read_json(filename, simplifyVector = F)
+save(JSON,file = "./data/FileCodificado.RData")
 ```
+
+Gracias a `simplifyVector` puedo crear el dataframe por atributos en vez de tenerlo todo en una lista terrible donde cada elemento es un individuo desglosado por atributos.
 
 ## Inspección de los datos
 
 Inspecciona los datos con `str`, `head`, `tail` y `summary`.
 
 ```{r}
-# str, head, tail, summary
+namedf<-JSON
+str(namedf)
+head(namedf)
+tail(namedf)
+summary(namedf)
+
 ```
 
 ## Extra: exportar datos en formato JSON
